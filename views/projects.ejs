@@ -15,16 +15,20 @@
       </section>
         
       <section>
-        <div class="card">
-          <div class="card-body">
-            This is some text within a card body.
-          </div>
-        </div>
-
-        <div class="card">
-          <div class="card-body">
-            This is some text within a card body.
-          </div>
+        <div class="card-group">
+          <% for(var x = 0; x < projects.length; x++ ) { %>
+            <div class="card" style="width: 18rem;">
+              <img src="<%= projects[x].logo %>" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title"><%= projects[x].company %></h5>
+                <p class="card-text"><%= projects[x].desciption %></p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><span class="text-uppercase font-weight-bold"><%= projects[x].tech %></span></li>
+                <li class="list-group-item"><span class="text-uppercase font-weight-bold"><%= projects[x].category %></span></li>
+              </ul>
+            </div>
+            <% } %>
         </div>
 
       </section>
