@@ -6,12 +6,18 @@
   </head>
   <body class="bg-white">
     <div class="container">
-        <%- include('partials/nav') %>
+      <%- include('partials/nav', { session: session }) %>
+      
+      <% if(session.isLoggedIn == true) { %>
+      <div class="d-flex justify-content-end">
+        <button  type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">New Project</button>
+      </div>
+      <% } %>
 
-        <section class="section-half d-flex align-items-center justify-content-center">
-          <div class="text-center">
-              <h1 class="display-2"><strong>It’s not what you say, <br /> it’s what you do.</strong></h1>
-          </div>
+      <section class="section-half d-flex align-items-center justify-content-center">
+        <div class="text-center">
+            <h1 class="display-2"><strong>It’s not what you say, <br /> it’s what you do.</strong></h1>
+        </div>
       </section>
         
       <section>
@@ -26,12 +32,70 @@
               <ul class="list-group list-group-flush">
                 <li class="list-group-item"><span class="text-uppercase font-weight-bold"><%= projects[x].tech %></span></li>
                 <li class="list-group-item"><span class="text-uppercase font-weight-bold"><%= projects[x].category %></span></li>
+                <% if(session.isLoggedIn == true) { %>
+                <li class="list-group-item">
+                  <button type="button" class="btn btn-outline-info btn-sm">Edit</button>
+                  <button type="button" class="btn btn-outline-danger btn-sm">Delete</button>
+                </li>
+                <% } %>
               </ul>
             </div>
             <% } %>
         </div>
 
       </section>
+
+      <%- include('partials/foot') %>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Add New Projects</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label>Image URL</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="form-group">
+                <label>Company</label>
+                <input type="text" class="form-control">
+              </div>
+              <div class="form-group">
+                <label>Description</label>
+                <textarea class="form-control"></textarea>
+              </div>
+              <div class="form-group">
+                <label>Technology</label>
+                <select multiple class="form-control">
+                  <option>Mobile</option>
+                  <option>Website</option>
+                  <option>Game</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Category</label>
+                <select class="form-control">
+                  <option>Lifestyle</option>
+                  <option>Medical</option>
+                  <option>Entertainment</option>
+                </select>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
     </div>
 
     <%- include('partials/scripts') %>

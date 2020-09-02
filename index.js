@@ -1,12 +1,21 @@
 const express = require('express')
+const session = require('express-session');
 const app = express()
 const port = 3000
 
 app.set('view engine', 'ejs');
 app.use(express.static('./public'));
+app.use(session({
+  secret: 'secret',
+  saveUninitialized: true,
+  resave: true
+}));
 
+// routing
 app.get('/', (req, res) => {
-  res.render('index')
+  res.render('index', {
+    session: req.session,
+  })
 })
 
 const projectList = [
@@ -34,7 +43,26 @@ const projectList = [
 ]
 
 app.get('/projects', (req, res) => {
-  res.render('projects', { projects: projectList })
+  res.render('projects', { 
+    session: req.session,
+    projects: projectList 
+  })
+})
+
+// Admin
+app.get('/admin/login', (req, res) => {
+  res.render('admin/login')
+})
+
+// temporary
+app.get('/admin/user/logged-in', (req, res) => {
+  req.session.isLoggedIn = true
+  res.redirect('/')
+})
+
+app.get('/admin/user/logged-out', (req, res) => {
+  req.session.isLoggedIn = false
+  res.redirect('/')
 })
 
 

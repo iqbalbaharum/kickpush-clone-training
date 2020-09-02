@@ -6,7 +6,7 @@
   </head>
   <body class="bg-desire">
     <div class="container">
-        <%- include('partials/nav') %>
+        <%- include('partials/nav', { session: session }) %>
 
         <section class="d-flex align-items-center justify-content-center">
             <div class="text-white text-center">
@@ -24,6 +24,8 @@
                 <h1 class="display-1 color-desire-light text-statement"><strong>No politics and no drama.</strong></h1>
             </div>
         </section>
+
+        <%- include('partials/foot') %>
     </div>
 
     <%- include('partials/scripts') %>

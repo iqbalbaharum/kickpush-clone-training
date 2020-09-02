@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
 
+html, body {
+    height: 100%
+}
+
 body.bg-desire {
     background-color: #EA3C53;
 }
@@ -32,4 +36,12 @@ section.section-half{
 
 body {
     font-family: 'Roboto Condensed', sans-serif;
+}
+
+/* Sign input */
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
 }

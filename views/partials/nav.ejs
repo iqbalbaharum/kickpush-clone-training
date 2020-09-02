@@ -13,5 +13,21 @@
           <a class="nav-link" href="#">Contacts</a>
         </li>
       </ul>
+
+      <form class="form-inline my-2 my-lg-0">
+        <% if(!session.isLoggedIn) { %>
+        <a href="/admin/login" class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</a>
+        <% } else { %>
+        <div class="btn-group" role="group">
+          <button id="btnGroupDrop1" type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            My Account
+          </button>
+          <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+            <a class="dropdown-item" href="#">Dashboard</a>
+            <a class="dropdown-item" href="/admin/user/logged-out">Logout</a>
+          </div>
+        </div>
+        <% } %>
+      </form>
     </div>
   </nav>
